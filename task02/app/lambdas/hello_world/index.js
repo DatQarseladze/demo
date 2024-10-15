@@ -1,8 +1,9 @@
 exports.handler = async (event) => {
     const path = event.rawPath || event.path;
-    const method = event.httpMethod;
+    const method = event.requestContext?.http?.method; // Updated to correctly fetch method from request context
 
-    if (path === '/hello' && method === 'GET') {
+    if (path === '/hello') {
+        // Handle /hello route
         const response = {
             statusCode: 200,
             body: JSON.stringify({
@@ -12,6 +13,7 @@ exports.handler = async (event) => {
         };
         return response;
     } else {
+        // Handle other routes or unsupported methods
         const response = {
             statusCode: 400,
             body: JSON.stringify({
