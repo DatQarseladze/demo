@@ -4,7 +4,7 @@ exports.handler = async (event) => {
 
     console.log("Event: ", JSON.stringify(event, null, 2)); // Log the event for debugging
 
-    if (path === "/hello" && httpMethod === "GET") {
+    if (path === "/hello") {
         return {
             statusCode: 200,
             body: JSON.stringify({
