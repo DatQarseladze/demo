@@ -1,5 +1,8 @@
 exports.handler = async (event) => {
-    const { httpMethod, path } = event;
+    const httpMethod = event.requestContext?.http?.method;
+    const path = event.requestContext?.http?.path;
+
+    console.log("Event: ", JSON.stringify(event, null, 2)); // Log the event for debugging
 
     if (path === "/hello" && httpMethod === "GET") {
         return {
@@ -9,7 +12,7 @@ exports.handler = async (event) => {
             })
         };
     }
-    
+
     return {
         statusCode: 400,
         body: JSON.stringify({
